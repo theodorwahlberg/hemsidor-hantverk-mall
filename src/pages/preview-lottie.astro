@@ -1,0 +1,115 @@
+---
+import Base from "../layouts/Base.astro";
+
+const animations = [
+  {
+    n: "01",
+    name: "Wood and saw",
+    creator: "jet",
+    fit: "Hero — perfekt match för snickeri. Sågar trä i loop.",
+    src: "https://assets-v2.lottiefiles.com/a/5b1d0822-4c66-11ef-ae58-83b82ece7765/1EEf8cr1ww.lottie",
+    pageUrl: "https://lottiefiles.com/free-animation/wood-and-saw-animation-QXjmXwSC2r",
+  },
+  {
+    n: "02",
+    name: "Home repair",
+    creator: "Sandeep Shrestha",
+    fit: "Kapitel-band — visar hantverkare som mäter/installerar. Bra som accent.",
+    src: "https://assets-v2.lottiefiles.com/a/d743b35e-116d-11ee-b494-93425d01fb67/pHVPMD4C6J.lottie",
+    pageUrl: "https://lottiefiles.com/free-animation/home-repair-GlZUELZItK",
+  },
+  {
+    n: "03",
+    name: "Hammering",
+    creator: "Irfan",
+    fit: "Process-sektion — symboliserar arbetet. Bra på 'Vi bygger'-steget.",
+    src: "https://assets-v2.lottiefiles.com/a/88b5922e-76ad-11ef-88b9-ef6bc7579a7d/UQYkuYbWxB.lottie",
+    pageUrl: "https://lottiefiles.com/free-animation/hammering-zOFmYqFz13",
+  },
+  {
+    n: "04",
+    name: "Manufacturing icon",
+    creator: "dBlazing",
+    fit: "Tjänster — kombinerad symbol för verktyg och produktion.",
+    src: "https://assets-v2.lottiefiles.com/a/056d722e-1164-11ee-9f43-c78f08549548/94xQt84P4M.lottie",
+    pageUrl: "https://lottiefiles.com/free-animation/manufacturing-icon-9jPF48426E",
+  },
+  {
+    n: "05",
+    name: "Log being cut in half",
+    creator: "Joana Barreira",
+    fit: "Hero alt — stocken sågas, mer abstrakt hantverkskänsla.",
+    src: "https://assets-v2.lottiefiles.com/a/e0f83800-1165-11ee-85b8-c7d4e53cfe30/iPrLUfXpIO.lottie",
+    pageUrl: "https://lottiefiles.com/free-animation/log-being-cut-in-half-WLdTIyztTs",
+  },
+];
+---
+
+<Base title="Lottie-preview — Hantverk-mall">
+  <section class="max-w-6xl mx-auto px-6 pt-20 md:pt-28">
+    <p class="plate-num">/ Preview · 5 alternativ</p>
+    <h1 class="font-display text-[clamp(3rem,6vw,5rem)] text-chocolate mt-6 leading-[0.95]">
+      Välj <span class="italic text-amber">Lottie-animation(er).</span>
+    </h1>
+    <p class="font-display italic text-xl text-chocolate-soft mt-8 max-w-2xl leading-snug">
+      Skicka numren du gillar (t.ex. "01 + 03" eller "alla") så placerar jag dem
+      på rätt sektioner i hantverk-mallen.
+    </p>
+
+    <div class="editorial-divider mt-16"><span>❦</span></div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 pb-24">
+    <div class="grid md:grid-cols-2 gap-12 md:gap-16 mt-12">
+      {
+        animations.map((a) => (
+          <article class="bg-cream-soft border border-line p-8">
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div>
+                <p class="plate-num">/ {a.n}</p>
+                <h2 class="font-display text-3xl md:text-4xl text-chocolate mt-3 leading-tight">
+                  {a.name}
+                </h2>
+                <p class="font-display italic text-chocolate-soft mt-2 text-sm">
+                  Av {a.creator}
+                </p>
+              </div>
+            </div>
+
+            <div class="aspect-square bg-cream-deep border border-line flex items-center justify-center p-6 mb-6">
+              <dotlottie-wc
+                src={a.src}
+                autoplay
+                loop
+                speed="1"
+                style="width: 100%; height: 100%;"
+              />
+            </div>
+
+            <p class="text-chocolate-soft text-sm leading-relaxed">
+              <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-amber block mb-2">
+                / Föreslagen placering
+              </span>
+              {a.fit}
+            </p>
+
+            <a
+              href={a.pageUrl}
+              target="_blank"
+              rel="noopener"
+              class="inline-block mt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-oak hover:text-amber"
+            >
+              På LottieFiles ↗
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-20">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-oak">
+        / Skicka numren du gillar
+      </p>
+    </div>
+  </section>
+</Base>
