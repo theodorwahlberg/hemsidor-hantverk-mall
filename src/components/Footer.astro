@@ -1,0 +1,87 @@
+---
+import { site } from "../site.config";
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-32 bg-cream-deep">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    {/* Editorial colophon-stil */}
+    <div class="grid md:grid-cols-12 gap-8 items-start">
+      <div class="md:col-span-5">
+        <p class="font-mono text-[10px] uppercase tracking-[0.25em] text-oak">
+          / Colophon
+        </p>
+        <p class="font-display text-3xl md:text-4xl italic text-chocolate mt-4 leading-tight max-w-xs">
+          Snickeri sedan {site.yearStarted}.
+        </p>
+        <p class="text-chocolate-soft mt-6 max-w-sm text-sm leading-relaxed">
+          {site.tagline}
+        </p>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="font-mono text-[10px] uppercase tracking-[0.25em] text-oak">
+          / Hitta hit
+        </p>
+        <p class="text-chocolate mt-4 text-sm leading-relaxed">
+          {site.address.street}<br />
+          {site.address.postal}
+        </p>
+        <a
+          href={site.address.mapsUrl}
+          target="_blank"
+          rel="noopener"
+          class="inline-block mt-2 font-display italic text-amber hover:text-amber-deep text-sm"
+        >
+          Karta →
+        </a>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="font-mono text-[10px] uppercase tracking-[0.25em] text-oak">
+          / Kontakt
+        </p>
+        <a
+          href={`tel:${site.phone.replace(/\s/g, "")}`}
+          class="block mt-4 text-chocolate hover:text-amber text-sm"
+        >
+          {site.phone}
+        </a>
+        <a
+          href={`mailto:${site.email}`}
+          class="block mt-1 text-chocolate-soft hover:text-amber text-sm break-all"
+        >
+          {site.email}
+        </a>
+      </div>
+
+      <div class="md:col-span-2">
+        <p class="font-mono text-[10px] uppercase tracking-[0.25em] text-oak">
+          / Öppet
+        </p>
+        <div class="mt-4 space-y-1 text-xs font-mono text-chocolate">
+          {
+            site.hours.map((h) => (
+              <div class="flex justify-between gap-2">
+                <span class="text-chocolate-soft">{h.day.slice(0, 3)}</span>
+                <span class="tabular-nums">{h.time}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-6 border-t border-line flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.25em] text-oak">
+      <p>© {year} {site.name}</p>
+      <a
+        href={site.social.instagram}
+        target="_blank"
+        rel="noopener"
+        class="hover:text-amber"
+      >
+        Instagram →
+      </a>
+    </div>
+  </div>
+</footer>

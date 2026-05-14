@@ -1,0 +1,308 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, services, projects, stats } from "../site.config";
+
+const featured = services.slice(0, 3);
+const featuredProject = projects[0];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["GeneralContractor", "LocalBusiness"],
+  name: site.name,
+  description: site.tagline,
+  url: "https://lindbergsnickeri.se",
+  email: site.email,
+  telephone: site.phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    postalCode: site.address.postal,
+    addressLocality: site.city,
+    addressCountry: "SE",
+  },
+};
+---
+
+<Base>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  {/* ═══════ HERO — asymmetric 5/7 split, foto/decor + editorial text ═══════ */}
+  <section class="max-w-6xl mx-auto px-6 pt-20 md:pt-32">
+    <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+      {/* Lager 1: Editorial sidnummer + headline */}
+      <div class="md:col-span-7">
+        <p class="plate-num">
+          / Vol. 01 · Hantverk
+        </p>
+        <h1 class="font-display text-[clamp(3rem,8vw,7rem)] text-chocolate mt-6 leading-[0.95] tracking-tight font-medium">
+          Hantverk<br />
+          <span class="italic text-amber">som håller</span><br />
+          generationer.
+        </h1>
+        <p class="font-display italic text-2xl md:text-3xl text-chocolate-soft mt-8 max-w-lg leading-snug">
+          Tre snickare i Sollentuna, sedan {site.yearStarted}.
+        </p>
+        <div class="mt-12 flex items-center gap-6 flex-wrap">
+          <a
+            href="/offert"
+            class="font-mono text-xs uppercase tracking-[0.2em] text-chocolate hover:text-amber transition-colors inline-flex items-center gap-3"
+          >
+            Be om offert
+            <span class="inline-block w-10 h-px bg-current"></span>
+          </a>
+          <a
+            href="/projekt"
+            class="font-display italic text-lg text-chocolate-soft hover:text-amber transition-colors"
+          >
+            Se våra projekt
+          </a>
+        </div>
+      </div>
+
+      {/* Lager 2: Featured project card — asymmetriskt, scroll-länkat */}
+      <aside class="md:col-span-5 md:mt-24">
+        <div class="bg-cream-soft border border-line p-8 md:p-10">
+          <p class="plate-num">
+            {featuredProject.plate}
+          </p>
+          <div class="aspect-[4/5] bg-cream-deep border border-line mt-6 flex items-center justify-center">
+            <div class="text-oak w-2/3">
+              <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" aria-hidden="true">
+                {/* Stiliserad köks-illustration */}
+                <g fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="20" y="60" width="160" height="140" />
+                  <line x1="20" y1="90" x2="180" y2="90" />
+                  <line x1="60" y1="60" x2="60" y2="200" />
+                  <line x1="100" y1="60" x2="100" y2="200" />
+                  <line x1="140" y1="60" x2="140" y2="200" />
+                  <line x1="20" y1="130" x2="180" y2="130" />
+                  <rect x="35" y="100" width="15" height="8" fill="currentColor" />
+                  <rect x="75" y="100" width="15" height="8" fill="currentColor" />
+                  <rect x="115" y="100" width="15" height="8" fill="currentColor" />
+                  <rect x="155" y="100" width="15" height="8" fill="currentColor" />
+                  <line x1="20" y1="40" x2="180" y2="40" stroke-width="2.5" />
+                  <path d="M 30 60 L 30 30 Q 30 20 40 20 L 160 20 Q 170 20 170 30 L 170 60" />
+                </g>
+              </svg>
+            </div>
+          </div>
+          <h3 class="font-display text-2xl text-chocolate mt-6 leading-tight">
+            {featuredProject.title}
+          </h3>
+          <p class="text-chocolate-soft text-sm mt-3 leading-relaxed">
+            {featuredProject.description}
+          </p>
+          <div class="mt-6 pt-4 border-t border-line font-mono text-[10px] uppercase tracking-[0.2em] text-oak flex justify-between">
+            <span>{featuredProject.year}</span>
+            <span>{featuredProject.material}</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    {/* Editorial divider */}
+    <div class="editorial-divider mt-24 md:mt-32">
+      <span>❦</span>
+    </div>
+  </section>
+
+  {/* ═══════ KAPITEL I — Ledare (drop cap article-stil) ═══════ */}
+  <section class="max-w-6xl mx-auto px-6 py-16 md:py-24">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-3">
+        <p class="plate-num sticky top-8">
+          / Kapitel I
+        </p>
+        <p class="font-display italic text-amber text-3xl mt-2 sticky top-16">
+          Ledare.
+        </p>
+      </div>
+      <div class="md:col-span-9 reveal" data-reveal>
+        <p class="drop-cap text-lg md:text-xl text-chocolate leading-relaxed">
+          Vi gör fast inredning för folk som tröttnat på IKEA-luckor som lossnar
+          efter tre år. Massivt trä, kalksten, mässing — material som åldras
+          vackert i stället för att se trötta ut. Du beställer, vi mäter,
+          ritar, bygger och installerar. Allt i Sollentuna och Stockholm, allt
+          med tolv månaders garanti på arbetet.
+        </p>
+
+        <p class="pull-quote mt-12">
+          "Jag bygger för folk som vet vad de vill ha — eller åtminstone vad
+          de inte vill ha. Resten ritar vi tillsammans."
+        </p>
+
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-oak mt-4">
+          / {site.ownerName}, grundare
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════ KAPITEL II — Tjänster som "feature articles" ═══════ */}
+  <section class="bg-cream-deep py-20 md:py-28 border-y border-line">
+    <div class="max-w-6xl mx-auto px-6">
+      <header class="mb-16 grid md:grid-cols-12 gap-10 items-end">
+        <div class="md:col-span-8">
+          <p class="plate-num">/ Kapitel II</p>
+          <h2 class="font-display text-5xl md:text-7xl text-chocolate mt-4 leading-[0.95]">
+            Det vi <span class="italic text-amber">gör.</span>
+          </h2>
+        </div>
+        <p class="md:col-span-4 text-chocolate-soft text-sm leading-relaxed">
+          Fem områden vi arbetar inom. Riktpriser nedan, men allt offereras
+          innan vi börjar.
+        </p>
+      </header>
+
+      <div class="space-y-12 md:space-y-16">
+        {
+          featured.map((s, i) => (
+            <article class="grid md:grid-cols-12 gap-6 md:gap-10 items-start py-8 border-t border-line reveal" data-reveal>
+              <div class="md:col-span-2">
+                <p class="roman text-5xl md:text-6xl">{s.roman}</p>
+              </div>
+              <div class="md:col-span-7">
+                <h3 class="font-display text-3xl md:text-4xl text-chocolate leading-tight">
+                  {s.name}
+                </h3>
+                <p class="font-display italic text-lg text-chocolate-soft mt-3">
+                  {s.short}
+                </p>
+                <p class="text-chocolate-soft mt-4 leading-relaxed max-w-prose">
+                  {s.details}
+                </p>
+              </div>
+              <div class="md:col-span-3 md:text-right">
+                <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-oak">
+                  / Pris
+                </p>
+                <p class="font-display text-2xl text-amber mt-1 tabular-nums">
+                  {s.price}
+                </p>
+                <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-oak mt-4">
+                  / Tid
+                </p>
+                <p class="font-display italic text-chocolate-soft mt-1">
+                  {s.duration}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="mt-16 text-center">
+        <a
+          href="/tjanster"
+          class="inline-flex items-center gap-3 font-display italic text-xl text-chocolate hover:text-amber"
+        >
+          Se alla fem tjänster
+          <span class="inline-block w-12 h-px bg-current"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════ KAPITEL III — Stat-band, men editorial-stil ═══════ */}
+  <section class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+    <p class="plate-num text-center">/ I siffror</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-4 mt-10">
+      {
+        stats.map((stat, i) => (
+          <div class:list={[
+            "text-center",
+            i > 0 && "md:border-l md:border-line md:pl-4",
+          ]}>
+            <p class="font-display text-6xl md:text-7xl text-chocolate leading-none tabular-nums">
+              {stat.value}
+            </p>
+            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-oak mt-4">
+              {stat.label}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* ═══════ KAPITEL IV — Process (vertikal tidslinje) ═══════ */}
+  <section class="bg-chocolate text-cream py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6">
+      <header class="mb-16 max-w-3xl">
+        <p class="plate-num" style="color: rgb(180, 152, 113);">/ Kapitel IV</p>
+        <h2 class="font-display text-5xl md:text-7xl text-cream mt-4 leading-[0.95]">
+          Så går det <span class="italic text-amber">till.</span>
+        </h2>
+      </header>
+
+      <ol class="space-y-12">
+        {[
+          {
+            n: "01",
+            t: "Vi möts.",
+            d: "Du beskriver vad du vill, vi tar mått på plats. Räkna med en timme.",
+          },
+          {
+            n: "02",
+            t: "Vi ritar och offererar.",
+            d: "Du får skisser och fast pris inom en vecka. Inga förändringar utan att vi pratar.",
+          },
+          {
+            n: "03",
+            t: "Vi bygger.",
+            d: "Mestadels i vår verkstad. Du får uppdatering en gång i veckan.",
+          },
+          {
+            n: "04",
+            t: "Vi installerar och städar.",
+            d: "Två-tre dagar hos er. Lakaduken kommer fram, golvet skyddas, ingen sågspån i hallen.",
+          },
+        ].map((step) => (
+          <li class="grid md:grid-cols-12 gap-6 md:gap-10 items-start border-t border-oak/30 pt-12 reveal" data-reveal>
+            <div class="md:col-span-2">
+              <p class="font-display text-7xl md:text-8xl text-amber leading-none tabular-nums">
+                {step.n}
+              </p>
+            </div>
+            <div class="md:col-span-10">
+              <h3 class="font-display text-3xl md:text-4xl text-cream leading-tight">
+                {step.t}
+              </h3>
+              <p class="text-cream/75 mt-4 max-w-2xl leading-relaxed">
+                {step.d}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* ═══════ FINAL — Poetic CTA (annorlunda än verkstadens "BEHÖVER HJÄLP") ═══════ */}
+  <section class="max-w-4xl mx-auto px-6 py-24 md:py-32 text-center">
+    <p class="plate-num">/ Slut · Vol. 01</p>
+    <h2 class="font-display text-5xl md:text-7xl text-chocolate mt-6 leading-[0.95]">
+      Skicka en <span class="italic text-amber">skiss</span>
+      <br />
+      eller bara en idé.
+    </h2>
+    <p class="font-display italic text-xl md:text-2xl text-chocolate-soft mt-8 max-w-xl mx-auto">
+      Vi svarar oftast inom 24 timmar. Konsultation och offert är alltid gratis.
+    </p>
+    <div class="mt-12 flex items-center justify-center gap-8 flex-wrap">
+      <a
+        href="/offert"
+        class="font-mono text-xs uppercase tracking-[0.2em] text-cream bg-chocolate hover:bg-amber transition-colors px-8 py-4 inline-flex items-center gap-3"
+      >
+        Be om offert
+        <span class="inline-block w-8 h-px bg-current"></span>
+      </a>
+      <a
+        href={`tel:${site.phone.replace(/\s/g, "")}`}
+        class="font-display italic text-xl text-chocolate hover:text-amber"
+      >
+        {site.phone}
+      </a>
+    </div>
+  </section>
+</Base>

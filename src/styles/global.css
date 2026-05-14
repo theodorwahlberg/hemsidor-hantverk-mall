@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  /* Verkstadsträ palett — varma trätoner, signal: kvalitet och tradition */
+  --font-sans: "Inter", "system-ui", "sans-serif";
+  --font-display: "Fraunces", "Georgia", "serif";
+  --font-mono: "JetBrains Mono", "Menlo", monospace;
+
+  /* Bakgrund och text */
+  --color-cream: #f4ede0;
+  --color-cream-deep: #ebe1ce;
+  --color-cream-soft: #faf4ea;
+  --color-line: #d8c9a8;
+
+  --color-chocolate: #2d1f12;
+  --color-chocolate-soft: #5a4a36;
+  --color-chocolate-dark: #1f1409;
+
+  --color-oak: #8b6f47;
+  --color-oak-soft: #b39871;
+
+  --color-amber: #d68a2e;
+  --color-amber-deep: #b46f1e;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-cream);
+  color: var(--color-chocolate);
+  font-family: var(--font-sans);
+}
+
+body {
+  background: var(--color-cream);
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-cream);
+}
+
+/* Editorial drop cap — första bokstaven extra stor i body text */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-size: 4.5em;
+  font-weight: 600;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.12em 0 0;
+  color: var(--color-amber);
+}
+
+/* Pull quote — magazine-stil citat */
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.2;
+  color: var(--color-chocolate);
+  border-left: 3px solid var(--color-amber);
+  padding-left: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+/* Plate-numrering för bilder och projekt */
+.plate-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-oak);
+}
+
+/* Reveal-animation */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

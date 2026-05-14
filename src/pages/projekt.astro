@@ -1,0 +1,61 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, projects } from "../site.config";
+---
+
+<Base title={`Projekt — ${site.name}`}>
+  <section class="max-w-6xl mx-auto px-6 pt-20 md:pt-28">
+    <p class="plate-num">/ Vol. 03 · Projekt</p>
+    <h1 class="font-display text-[clamp(3rem,7vw,6rem)] text-chocolate mt-6 leading-[0.95]">
+      Ett urval av <span class="italic text-amber">tidigare jobb.</span>
+    </h1>
+    <p class="font-display italic text-2xl text-chocolate-soft mt-8 max-w-2xl">
+      Foton kommer. Tills dess: beskrivningar och materialval för fyra senaste projekt.
+    </p>
+
+    <div class="editorial-divider mt-20"><span>❦</span></div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 pb-24">
+    <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+      {
+        projects.map((p, i) => (
+          <article class:list={["reveal", i % 2 === 1 && "md:mt-32"]} data-reveal>
+            <div class="aspect-[4/5] bg-cream-deep border border-line flex items-center justify-center">
+              <div class="text-oak w-2/3 opacity-60">
+                <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" aria-hidden="true">
+                  <g fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="20" y="40" width="160" height="180" />
+                    <line x1="20" y1="80" x2="180" y2="80" />
+                    <line x1="20" y1="130" x2="180" y2="130" />
+                    <line x1="20" y1="180" x2="180" y2="180" />
+                    <line x1="60" y1="40" x2="60" y2="220" />
+                    <line x1="100" y1="40" x2="100" y2="220" />
+                    <line x1="140" y1="40" x2="140" y2="220" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+            <p class="plate-num mt-6">{p.plate} · {p.year}</p>
+            <h2 class="font-display text-3xl md:text-4xl text-chocolate mt-3 leading-tight">
+              {p.title}
+            </h2>
+            <p class="text-chocolate-soft mt-4 leading-relaxed">
+              {p.description}
+            </p>
+            <div class="mt-6 pt-4 border-t border-line grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p class="plate-num">/ Plats</p>
+                <p class="font-display italic text-chocolate-soft mt-1">{p.location}</p>
+              </div>
+              <div>
+                <p class="plate-num">/ Material</p>
+                <p class="font-display italic text-chocolate-soft mt-1">{p.material}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</Base>

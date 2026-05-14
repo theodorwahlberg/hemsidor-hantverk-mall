@@ -1,0 +1,80 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, services } from "../site.config";
+---
+
+<Base title={`Tjänster — ${site.name}`}>
+  <section class="max-w-6xl mx-auto px-6 pt-20 md:pt-28">
+    <p class="plate-num">/ Vol. 02 · Tjänster</p>
+    <h1 class="font-display text-[clamp(3rem,7vw,6rem)] text-chocolate mt-6 leading-[0.95]">
+      Fem områden, <span class="italic text-amber">en standard.</span>
+    </h1>
+    <p class="font-display italic text-2xl text-chocolate-soft mt-8 max-w-2xl">
+      Allt vi gör inom snickeri och fast inredning. Riktpriser nedan — exakt offert ges efter mätning på plats.
+    </p>
+
+    <div class="editorial-divider mt-20"><span>❦</span></div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 pb-24">
+    <div class="space-y-16 md:space-y-20">
+      {
+        services.map((s) => (
+          <article class="grid md:grid-cols-12 gap-6 md:gap-10 items-start border-t border-line pt-12 md:pt-16 reveal" data-reveal>
+            <div class="md:col-span-2">
+              <p class="roman text-6xl md:text-7xl leading-none">{s.roman}</p>
+              <p class="plate-num mt-3">/ {s.no}</p>
+            </div>
+            <div class="md:col-span-7">
+              <h2 class="font-display text-4xl md:text-5xl text-chocolate leading-tight">
+                {s.name}
+              </h2>
+              <p class="font-display italic text-xl text-chocolate-soft mt-4">
+                {s.short}
+              </p>
+              <p class="text-chocolate-soft mt-5 leading-relaxed max-w-prose">
+                {s.details}
+              </p>
+            </div>
+            <div class="md:col-span-3 md:text-right">
+              <p class="plate-num">/ Pris</p>
+              <p class="font-display text-3xl text-amber mt-2 tabular-nums">
+                {s.price}
+              </p>
+              <p class="plate-num mt-6">/ Tid</p>
+              <p class="font-display italic text-chocolate-soft mt-2">
+                {s.duration}
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="editorial-divider mt-24"><span>❦</span></div>
+
+    <div class="grid md:grid-cols-3 gap-10 md:gap-12 mt-20">
+      <div>
+        <p class="plate-num">/ Garanti</p>
+        <p class="font-display text-2xl text-chocolate mt-3">12 månader på arbete</p>
+        <p class="text-chocolate-soft text-sm mt-3 leading-relaxed">
+          Något lossnar, knäpper eller fungerar inte som det ska? Säg till så fixar vi det.
+        </p>
+      </div>
+      <div>
+        <p class="plate-num">/ ROT-avdrag</p>
+        <p class="font-display text-2xl text-chocolate mt-3">50% på arbetstid</p>
+        <p class="text-chocolate-soft text-sm mt-3 leading-relaxed">
+          För privatpersoner som äger sin bostad. Vi hjälper med ansökan.
+        </p>
+      </div>
+      <div>
+        <p class="plate-num">/ Betalning</p>
+        <p class="font-display text-2xl text-chocolate mt-3">Faktura, 30 dagar netto</p>
+        <p class="text-chocolate-soft text-sm mt-3 leading-relaxed">
+          Halva summan vid leverans, andra halvan efter färdig installation.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

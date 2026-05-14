@@ -1,0 +1,93 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, stats } from "../site.config";
+---
+
+<Base title={`Om — ${site.name}`}>
+  <section class="max-w-6xl mx-auto px-6 pt-20 md:pt-28">
+    <p class="plate-num">/ Vol. 04 · Om</p>
+    <h1 class="font-display text-[clamp(3rem,7vw,6rem)] text-chocolate mt-6 leading-[0.95]">
+      Tre snickare, <span class="italic text-amber">en verkstad.</span>
+    </h1>
+
+    <div class="editorial-divider mt-20"><span>❦</span></div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-3">
+        <p class="plate-num sticky top-8">/ Ledare</p>
+      </div>
+      <div class="md:col-span-9 reveal" data-reveal>
+        <p class="drop-cap text-lg md:text-xl text-chocolate leading-relaxed">
+          Jonas Lindberg startade {site.name} år {site.yearStarted} efter tio år
+          på en av Stockholms äldsta snickerifirmor. Idén var enkel — gör fast
+          inredning som folk vill leva med, inte byta efter fem år. Trä som
+          åldras vackert. Kalksten från Gotland när det passar. Mässing till
+          handtag i stället för kromad plast.
+        </p>
+
+        <p class="pull-quote">
+          "Jag är inte intresserad av snabba renoveringar. Vi bygger sånt som
+          står kvar när jag är pensionär."
+        </p>
+
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-oak">
+          / Jonas Lindberg
+        </p>
+
+        <p class="mt-12 text-chocolate-soft leading-relaxed">
+          Idag är vi tre — Jonas, Mikael och Erik. Verkstaden ligger på
+          Norrviksvägen i Sollentuna. Mestadels jobbar vi i Stockholm med
+          omnejd, men för rätt projekt åker vi längre.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream-deep py-20 md:py-28 border-y border-line">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="plate-num">/ Hantverkarna</p>
+      <h2 class="font-display text-4xl md:text-5xl text-chocolate mt-4">Vi som bygger.</h2>
+
+      <div class="grid md:grid-cols-3 gap-10 mt-16">
+        {[
+          { roman: "I.", name: "Jonas Lindberg", role: "Grundare och hantverkare", years: 18, bio: "Specialiserad på kök och fast inredning. Bygger sedan 17 års ålder." },
+          { roman: "II.", name: "Mikael Norén", role: "Hantverkare", years: 9, bio: "Snickaren med öga för detaljer. Ansvarar för dörrar, fönster och fina inpassningar." },
+          { roman: "III.", name: "Erik Sandström", role: "Hantverkare och formgivare", years: 5, bio: "Yngst av oss. Ritar och bygger, ofta med moderna lösningar för gamla rum." },
+        ].map((m) => (
+          <article class="reveal" data-reveal>
+            <p class="roman text-6xl">{m.roman}</p>
+            <h3 class="font-display text-3xl text-chocolate mt-4 leading-tight">{m.name}</h3>
+            <p class="font-display italic text-chocolate-soft mt-2">{m.role}</p>
+            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-amber mt-3">
+              {m.years}+ år hos {site.shortName}
+            </p>
+            <p class="text-chocolate-soft text-sm mt-4 leading-relaxed">{m.bio}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+    <p class="plate-num text-center">/ I siffror</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-4 mt-10">
+      {
+        stats.map((stat, i) => (
+          <div class:list={[
+            "text-center",
+            i > 0 && "md:border-l md:border-line md:pl-4",
+          ]}>
+            <p class="font-display text-6xl md:text-7xl text-chocolate leading-none tabular-nums">
+              {stat.value}
+            </p>
+            <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-oak mt-4">
+              {stat.label}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Base>

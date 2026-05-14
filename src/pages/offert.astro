@@ -1,0 +1,134 @@
+---
+import Base from "../layouts/Base.astro";
+import { site, services } from "../site.config";
+
+const serviceOptions = services.map((s) => `${s.roman} ${s.name} (${s.price})`);
+const today = new Date().toISOString().split("T")[0];
+---
+
+<Base title={`Offertförfrågan — ${site.name}`}>
+  <section class="max-w-6xl mx-auto px-6 pt-20 md:pt-28 pb-24">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <p class="plate-num">/ Vol. 06 · Offert</p>
+        <h1 class="font-display text-[clamp(3rem,6vw,5rem)] text-chocolate mt-6 leading-[0.95]">
+          Skicka <span class="italic text-amber">förfrågan.</span>
+        </h1>
+        <p class="font-display italic text-xl text-chocolate-soft mt-8 leading-snug max-w-md">
+          Vi återkopplar inom 24 timmar med pris, tidsplan och eventuella frågor.
+        </p>
+        <div class="editorial-divider mt-12"><span>❦</span></div>
+        <p class="text-chocolate-soft text-sm leading-relaxed mt-8 max-w-md">
+          Föredrar du att prata direkt? Ring {site.phone} på vardagar mellan 9–16.
+          Vi svarar oftast på första signalen.
+        </p>
+      </div>
+
+      <div class="md:col-span-7">
+        <form
+          action="https://formspree.io/f/mykodwke"
+          method="POST"
+          class="bg-cream-soft border border-line p-8 md:p-10 space-y-7"
+        >
+          {/* TODO: byt action till kundens egen Formspree-endpoint innan deploy */}
+          <div>
+            <label for="service" class="plate-num block">/ Vad gäller det?</label>
+            <select
+              id="service"
+              name="service"
+              required
+              class="w-full mt-3 bg-cream border border-line text-chocolate px-4 py-3 font-display text-lg italic focus:outline-none focus:border-amber transition-colors"
+            >
+              <option value="">Välj tjänst</option>
+              {serviceOptions.map((opt) => <option value={opt}>{opt}</option>)}
+              <option value="Annat">Annat (beskriv nedan)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="name" class="plate-num block">/ Ditt namn</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              autocomplete="name"
+              class="w-full mt-3 bg-cream border border-line text-chocolate px-4 py-3 font-display italic focus:outline-none focus:border-amber transition-colors"
+            />
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+              <label for="phone" class="plate-num block">/ Telefon</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                autocomplete="tel"
+                class="w-full mt-3 bg-cream border border-line text-chocolate px-4 py-3 font-display italic focus:outline-none focus:border-amber transition-colors"
+              />
+            </div>
+            <div>
+              <label for="email" class="plate-num block">/ E-post</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+                class="w-full mt-3 bg-cream border border-line text-chocolate px-4 py-3 font-display italic focus:outline-none focus:border-amber transition-colors"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="address" class="plate-num block">/ Adress (där jobbet ska utföras)</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              autocomplete="street-address"
+              class="w-full mt-3 bg-cream border border-line text-chocolate px-4 py-3 font-display italic focus:outline-none focus:border-amber transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="when" class="plate-num block">/ Önskad start (valfritt)</label>
+            <input
+              type="date"
+              id="when"
+              name="when"
+              min={today}
+              class="w-full mt-3 bg-cream border border-line text-chocolate px-4 py-3 font-display italic focus:outline-none focus:border-amber transition-colors"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="plate-num block">/ Beskriv jobbet</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              placeholder="t.ex. Köksrenovering — 12 luckor, ny bänkskiva i sten, behåller stommarna"
+              class="w-full mt-3 bg-cream border border-line text-chocolate px-4 py-3 font-display italic focus:outline-none focus:border-amber transition-colors resize-none placeholder:text-oak-soft"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-chocolate text-cream px-8 py-5 font-mono text-xs uppercase tracking-[0.2em] hover:bg-amber transition-colors inline-flex items-center justify-between"
+          >
+            Skicka förfrågan
+            <span class="text-2xl">→</span>
+          </button>
+
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-oak text-center">
+            / Vi återkopplar inom 24 timmar · Konsultation och offert kostar inget
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
